@@ -7,10 +7,8 @@ export const fetchCryptosAndQoutes = () => async (dispatch, getState) => {
   await dispatch(fetchCryptos())
 
   const cryptoList = getState().cryptos
-  const cryptoListSorted = _.orderBy(cryptoList, ['rank'], ['asc'])
 
-
-  const topFive = cryptoListSorted.slice(0,5)
+  const topFive = cryptoList.slice(0,5)
   const topFiveIds = topFive.map((cypto) => {
     return cypto.id
   })
@@ -22,30 +20,7 @@ export const fetchCryptosAndQoutes = () => async (dispatch, getState) => {
   dispatch(setActiveList(topFiveIds))
 }
 
-export const sortCryptos = (sortBy) => (dispatch, getState) => {
-  const currentSortBy = getState().sortBy
-  var direction = 'asc'
 
-  if (currentSortBy.name == sortBy && currentSortBy.direction == 'asc') {
-    direction = 'desc'
-  }
-  
-  dispatch({
-    type: 'SORT_CRYPTOS',
-    payload: {
-      name: sortBy,
-      direction: direction
-    }
-  })
-
-  dispatch({
-    type: 'SORT_TYPE',
-    payload: {
-      name: sortBy,
-      direction: direction
-    }
-  })
-}
 
 export const fetchCryptos = () => async (dispatch) => {
   try {
@@ -102,6 +77,31 @@ export const fetchQoute = (cryptoId) => async (dispatch, getState) => {
 
   }
 
+}
+
+export const sortCryptos = (sortBy) => (dispatch, getState) => {
+  const currentSortBy = getState().sortBy
+  var direction = 'asc'
+
+  if (currentSortBy.name == sortBy && currentSortBy.direction == 'asc') {
+    direction = 'desc'
+  }
+  
+  dispatch({
+    type: 'SORT_CRYPTOS',
+    payload: {
+      name: sortBy,
+      direction: direction
+    }
+  })
+
+  dispatch({
+    type: 'SORT_TYPE',
+    payload: {
+      name: sortBy,
+      direction: direction
+    }
+  })
 }
 
 

@@ -5,6 +5,9 @@ import _ from 'lodash'
 import TableTitle from './TableTitle' 
 import CryptoListItem from './CryptoListItem'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const CryptoList = () => {
@@ -17,6 +20,8 @@ const CryptoList = () => {
   const activeCryptosList = activeCryptos.map((crypto) => {
     return <CryptoListItem {...crypto} key={crypto.id} />
   })
+
+  console.log(cryptos.length)
 
 
   return (
@@ -32,9 +37,10 @@ const CryptoList = () => {
           </tr>
         </thead>
         <tbody>
-          {activeCryptosList}
+        {activeCryptosList}
         </tbody>
-      </table>   
+      </table> 
+      {cryptos.length === 0 ? <div className='spinner-container'><FontAwesomeIcon icon={faSpinner} spin size="4x"/></div> : '' }
     </div>
   )
 }
