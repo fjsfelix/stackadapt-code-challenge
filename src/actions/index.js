@@ -48,21 +48,30 @@ export const sortCryptos = (sortBy) => (dispatch, getState) => {
 }
 
 export const fetchCryptos = () => async (dispatch) => {
-  const response = await axios.get('https://www.stackadapt.com/coinmarketcap/map', {
-    params: {limit: 10}
-  })
+  try {
+    const response = await axios.get('https://www.stackadapt.com/coinmarketcap/map', {
+      params: {limit: 10}
+    })
 
-  var resultWithPrice = response.data.data.map((crypto) => {
-    crypto['price'] = null
-    return crypto
-  })
+    var resultWithPrice = response.data.data.map((crypto) => {
+      crypto['price'] = null
+      return crypto
+    })
+  
+    const resultSorted = _.orderBy(resultWithPrice, ['rank'], ['asc'])
+  
+    dispatch({
+      type: 'FETCH_CRYPTOS',
+      payload: resultSorted
+    })
+  } catch (error) {
+    console.log(error.toString())
+    dispatch({
+      type: 'ERROR',
+      payload: error.toString()
+    })
 
-  const resultSorted = _.orderBy(resultWithPrice, ['rank'], ['asc'])
-
-  dispatch({
-    type: 'FETCH_CRYPTOS',
-    payload: resultSorted
-  })
+  }
 }
 
 export const fetchQoute = (cryptoId) => async (dispatch, getState) => {
@@ -73,16 +82,26 @@ export const fetchQoute = (cryptoId) => async (dispatch, getState) => {
     return crypto.id === cryptoId
   })
 
-  if (currentCrypto.price === null ) {
-    const response = await axios.get('https://www.stackadapt.com/coinmarketcap/quotes', {
-      params: {id: cryptoId}
+  try {
+    if (currentCrypto.price === null ) {
+      const response = await axios.get('https://www.stackadapt.com/coinmarketcap/quotes', {
+        params: {id: cryptoId}
+      })
+
+      dispatch({
+        type: 'FETCH_QUOTE',
+        payload: response.data.data[cryptoId]
+      })
+    }
+  } catch (error) {
+    console.log(error.toString())
+    dispatch({
+      type: 'ERROR',
+      payload: error.toString()
     })
 
-    dispatch({
-      type: 'FETCH_QUOTE',
-      payload: response.data.data[cryptoId]
-    })
   }
+
 }
 
 
@@ -105,5 +124,12 @@ export const removeActive = (cryptoId) => {
   return {
     type: "REMOVE_ACTIVE",
     payload: cryptoId
+  }
+}
+
+export const removeError = (errorId) => {
+  return {
+    type: "REMOVE_ERROR",
+    payload: errorId
   }
 }

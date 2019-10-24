@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 import { fetchCryptosAndQoutes, addActive } from '../actions'
 import CryptoList from './CryptoList'
+import Errors from './Errors'
 import './styles.scss'
 
 
@@ -34,15 +35,18 @@ const App = () => {
   }
 
   return (
-    <div className='container'>
-      <Select 
-        value={selectedCrypto}
-        onChange={handleChange}
-        options={unactiveCryptosOptions}
-        placeholder={'Select Cryptocurrency to Add'}
-      />
-      <CryptoList />
-    </div>
+    <>
+      <Errors/>
+      <div className='container'>
+        <Select 
+          value={selectedCrypto}
+          onChange={handleChange}
+          options={unactiveCryptosOptions}
+          placeholder={'Select Cryptocurrency to Add'}
+        />
+        <CryptoList />
+      </div>
+    </>
   )
 }
 
