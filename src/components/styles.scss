@@ -26,6 +26,10 @@ th {
   color: #f5f6fa;
   border-top: 1px solid #f5f6fa;
   border-bottom: 1px solid #f5f6fa;
+  cursor: pointer;
+  &:hover {
+    color: #70a1ff;
+  }
 }
 
 td {
@@ -62,5 +66,15 @@ tr {
     outline: none;
     cursor: pointer;
   }
-  
+}
+
+.sort-by {
+  color: #70a1ff;
+  .caret {
+    margin-left: 5px;
+  }
+  .caret-up {
+    position: relative;
+    top: 3px;
+  }
 }

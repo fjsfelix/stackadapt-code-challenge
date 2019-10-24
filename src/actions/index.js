@@ -24,10 +24,10 @@ export const fetchCryptosAndQoutes = () => async (dispatch, getState) => {
 
 export const sortCryptos = (sortBy) => (dispatch, getState) => {
   const currentSortBy = getState().sortBy
-  var direction = 'desc'
+  var direction = 'asc'
 
-  if (currentSortBy.name == sortBy && currentSortBy.direction == 'desc') {
-    direction = 'asc'
+  if (currentSortBy.name == sortBy && currentSortBy.direction == 'asc') {
+    direction = 'desc'
   }
   
   dispatch({

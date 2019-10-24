@@ -16,9 +16,9 @@ const CryptoListItem = ({id, name, symbol, rank, price}) => {
 
   return (
     <tr>
+      <td>{rank}</td>
       <td>{symbol}</td>
       <td>{name}</td>
-      <td>{rank}</td>
       { price ? 
         <td>${ price > 1 ? price.toFixed(2): price }</td>
         :
@@ -27,7 +27,7 @@ const CryptoListItem = ({id, name, symbol, rank, price}) => {
       <td className='remove-container'>
         {active.length > 1 ? 
           <button className='remove-btn' onClick={ () => { handleRemove(id) } }>
-            <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes}/>
           </button>
           : ''
         }
