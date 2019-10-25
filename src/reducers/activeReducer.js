@@ -1,5 +1,6 @@
 import _ from 'lodash'
 
+
 const activeReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_ACTIVE_LIST':

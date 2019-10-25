@@ -13,11 +13,8 @@ const store = createStore(reducers, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ))
 
-
 ReactDOM.render(
-<Provider store={store}>
-  <App />
-</Provider>
+  <Provider store={store}>
+    <App />
+  </Provider>
 , document.getElementById('root'));
-
-

@@ -3,7 +3,6 @@ const defaultSort = {
   direction: 'asc'
 }
 
-
 const sortByReducer = (state = defaultSort,  action) => {
   switch (action.type){
     case 'SORT_TYPE':

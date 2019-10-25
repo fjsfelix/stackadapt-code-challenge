@@ -5,8 +5,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import { removeActive } from '../actions'
 
-const CryptoListItem = ({id, name, symbol, rank, price}) => {
 
+const CryptoListItem = ({id, name, symbol, rank, price}) => {
   const dispatch = useDispatch()
   const active = useSelector((state) => state.active)
 

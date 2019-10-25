@@ -2,7 +2,6 @@ import axios from 'axios'
 import _ from 'lodash'
 
 
-
 export const fetchCryptosAndQoutes = () => async (dispatch, getState) => {
   await dispatch(fetchCryptos())
 
@@ -19,8 +18,6 @@ export const fetchCryptosAndQoutes = () => async (dispatch, getState) => {
  
   dispatch(setActiveList(topFiveIds))
 }
-
-
 
 export const fetchCryptos = () => async (dispatch) => {
   try {
@@ -40,7 +37,7 @@ export const fetchCryptos = () => async (dispatch) => {
       payload: resultSorted
     })
   } catch (error) {
-    console.log(error.toString())
+
     dispatch({
       type: 'ERROR',
       payload: error.toString()
@@ -50,8 +47,6 @@ export const fetchCryptos = () => async (dispatch) => {
 }
 
 export const fetchQoute = (cryptoId) => async (dispatch, getState) => {
-
-  console.log(cryptoId)
 
   const currentCrypto = getState().cryptos.find((crypto) => {
     return crypto.id === cryptoId
@@ -69,7 +64,6 @@ export const fetchQoute = (cryptoId) => async (dispatch, getState) => {
       })
     }
   } catch (error) {
-    console.log(error.toString())
     dispatch({
       type: 'ERROR',
       payload: error.toString()

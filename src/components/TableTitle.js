@@ -5,9 +5,7 @@ import { faSortUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { sortCryptos } from '../actions'
 
 
-
 const TableTitle = ({name, label}) => {
-
   const dispatch = useDispatch()
   const sortBy = useSelector((state) => state.sortBy)
 

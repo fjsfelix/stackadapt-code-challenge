@@ -5,14 +5,14 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import { removeError } from '../actions'
 
-const Errors = () => {
 
+const Errors = () => {
   const dispatch = useDispatch()
   const errors = useSelector((state) => state.errors).errorList
 
   const errorList = errors.map((error) => {
     return (
-      <div className="error">
+      <div className="error" key={error.id}>
         <span>{error.msg}</span>
         <button onClick={ () => {handleClick(error.id)} }><FontAwesomeIcon icon={faTimes}/></button>
       </div>

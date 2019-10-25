@@ -1,28 +1,21 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import TableTitle from './TableTitle' 
 import CryptoListItem from './CryptoListItem'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-
-
 
 const CryptoList = () => {
-
   const cryptos = (useSelector((state) => state.cryptos))
   const active = useSelector((state) => state.active)
   const activeCryptos = cryptos.filter(crypto => active.includes(crypto.id) )
 
-
   const activeCryptosList = activeCryptos.map((crypto) => {
     return <CryptoListItem {...crypto} key={crypto.id} />
   })
-
-  console.log(cryptos.length)
-
 
   return (
     <div>

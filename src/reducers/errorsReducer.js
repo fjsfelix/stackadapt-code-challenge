@@ -7,7 +7,6 @@ const errorsReducer = (state = errorDefault, action) => {
   switch(action.type) {
     case 'ERROR': 
       var duplicate = state.errorList.find((error) => {
-        console.log(error.msg + " ---> " + action.payload)
         if (error.msg === action.payload) {
           return true
         }
