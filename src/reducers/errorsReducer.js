@@ -25,7 +25,7 @@ const errorsReducer = (state = errorDefault, action) => {
       }
     case 'REMOVE_ERROR':
       var errorListCopy = [...state.errorList]
-      var filtered = errorListCopy.filter((error) => error.id != action.payload)
+      var filtered = errorListCopy.filter((error) => error.id !== action.payload)
 
       return {
         idCounter: state.idCounter,

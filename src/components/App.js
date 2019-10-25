@@ -19,8 +19,6 @@ const App = () => {
     return { value: crypto.id, label: crypto.symbol + ' - ' + crypto.name }
   })
   const unactiveCryptosOptionsSorted =  _.orderBy(unactiveCryptosOptions, ['label'], ['asc'])
-  console.log(unactiveCryptosOptionsSorted)
-
 
   const [selectedCrypto, setSelectedCrypto] = useState(null);
 
